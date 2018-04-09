@@ -1,23 +1,24 @@
 pipeline {
     agent any
-    stages{
-        stage('Init'){
-            steps {
-                echo "Testing..."
-            }
-        }
+    	stages{
+		stage ('Deploy package-maven-project'){
+            		steps {
+                	build job: 'package-maven-project' 
+			}
+		}
 
-        stage('Build'){
-            steps {
-                echo 'Building...'
-            }
-        }
-
-        stage ('Deploy'){
-            steps {
-                echo 'Code deployed.'
-            }
-        }
-
-    }
+		stage ('Deploy to Staging'){
+            		steps {
+                	build job: 'deploy-to-staging' 
+			}
+		
+		}
+		post {
+                	success {
+                    	echo 'Now Archiving...'
+			}
+		}
+	}       	
 }
+
+	
