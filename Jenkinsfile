@@ -13,11 +13,7 @@ pipeline {
 			}
 		
 		}
-		post {
-                	success {
-                    	echo 'Now Archiving...'
-			}
-		}
+		
 	}       	
 }
 
